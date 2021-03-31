@@ -1,0 +1,43 @@
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @restaurant.address %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @restaurant.phone_number %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @restaurant.category %>
+</p>
+
+<p>
+  <%= simple_form_for [ @restaurant, @review ] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.submit %>
+<% end %>
+</p>
+
+<%= link_to 'Back', restaurants_path %>
+
+<br><br>
+<%= link_to 'Write a review', new_restaurant_review_path(@restaurant)  %>
+
+<div class="mt-4">
+  <h2>Reviews for <%= @restaurant.name %></h2>
+  <% @restaurant.reviews.each do |review| %>
+    <p><%= review.content %>
+      <%= review.rating %>
+     <br>- <%= review.created_at.strftime('%Y-%m-%d') %></p>
+  <% end %>
+</div>
+
+
